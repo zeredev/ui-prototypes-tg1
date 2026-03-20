@@ -7,12 +7,21 @@ Este es el repositorio que contiene los prototipos de interfaces creadas para la
 
 ## ¿Qué Interfaces contiene el repositorio? 🚀
 Hemos creado varias interfaces con un diseño más elegante y complejo como alternativa a las creadas utilizando la herramienta de Enterprise Architect. 
-Aunque las interfaces utilizan html, css y, en alguna ocasión, una ligera interactividad usando JavaScript. hemos optado por compactar cada interfaz en un archivo .html 
-con su nombre que contiene todo código necesario para su correcto funcionamiento. 
 
-### Listado de Interfaces
+## 📂 Estructura del repositorio 
 
 - Interfaz 1:
 - Interfaz 2:
 - Interfaz 3:
 - Interfaz 4:
+
+## 🛠️ Cómo visualizar los prototipos
+
+Para facilitar la revisión, hemos compactado cada interfaz en un **único archivo `.html` independiente**. Esto significa que no hay dependencias externas de archivos CSS o JS que puedan fallar.
+
+1. Clona el repositorio: `git clone https://github.com/tu-usuario/nombre-repo.git`
+2. Abre cualquier archivo `.html` en tu navegador preferido (Chrome, Firefox, Edge, etc.).
+3. ¡Explora la interfaz!
+
+---
+

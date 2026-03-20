@@ -1,7 +1,7 @@
 # UI - Prototypes - TG1
 
 ## Grado en Ingeniería de Computadores 
-## __Creado por: Ramón Fco. Pérez Villa [https://github.com/zeredev] y Jorge Alcázar [https://github.com/j.alcazar] .__
+## __Creado por: Ramón Fco. Pérez Villa [https://github.com/zeredev] y Jorge Alcázar [https://github.com/Jalcazara] .__
 Este es el repositorio que contiene los prototipos de interfaces creadas para la TG1 de la Asignatura Ingeniería del Software.
 
 

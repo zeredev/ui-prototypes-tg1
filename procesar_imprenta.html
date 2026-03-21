@@ -2,35 +2,165 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Prototipo - Recepción Imprenta (Modo Oscuro)</title>
+    <title>Prototipo - Recepción Imprenta (Modo Elegante)</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #ffffff; margin: 0; padding: 40px; color: #e0e0e0; }
-        .pantalla { max-width: 800px; margin: 0 auto; background-color: #1e1e1e; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); overflow: hidden; position: relative; }
-        .cabecera { background-color: #0f172a; color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; }
-        .cabecera h1 { margin: 0; font-size: 24px; }
-        .usuario { font-size: 14px; color: #9ca3af; }
+        /* Paleta de colores unificada con el index */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #0f172a; 
+            margin: 0; 
+            padding: 40px; 
+            color: #f3f4f6; 
+        }
+
+        .pantalla { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background-color: #1e293b; 
+            border-radius: 12px; 
+            border: 1px solid #334155;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            overflow: hidden; 
+            position: relative; 
+        }
+
+        .cabecera { 
+            background-color: #1e293b; 
+            padding: 25px 30px; 
+            border-bottom: 1px solid #334155;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+
+        .cabecera h1 { margin: 0; font-size: 22px; color: #3b82f6; }
+        .usuario { font-size: 13px; color: #9ca3af; }
         .contenido { padding: 30px; }
         
-        .info-box { background-color: #1e3a8a; border-left: 4px solid #3b82f6; padding: 15px; border-radius: 4px; margin-bottom: 30px; color: #bfdbfe; font-size: 14px; }
+        /* Info box estilizado */
+        .info-box { 
+            background-color: rgba(59, 130, 246, 0.1); 
+            border-left: 4px solid #3b82f6; 
+            padding: 15px; 
+            border-radius: 6px; 
+            margin-bottom: 30px; 
+            color: #93c5fd; 
+            font-size: 14px; 
+        }
         
         .form-group { margin-bottom: 20px; display: flex; align-items: center; }
-        .form-group label { width: 220px; font-weight: bold; color: #d1d5db; }
-        .form-group input { flex-grow: 1; padding: 10px; border-radius: 4px; border: 1px solid #555; background-color: #2d2d2d; color: white; font-size: 14px; }
-        .input-corto { max-width: 150px; }
-        .btn-buscar { background-color: #4b5563; color: white; border: none; padding: 10px 15px; border-radius: 4px; margin-left: 10px; cursor: pointer; }
+        .form-group label { width: 250px; font-weight: bold; color: #9ca3af; font-size: 14px; }
         
-        .botones { display: flex; justify-content: flex-end; gap: 15px; margin-top: 30px; border-top: 1px solid #404040; padding-top: 20px; }
-        .btn-secundario { background-color: transparent; border: 1px solid #555; color: #d1d5db; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        .btn-principal { background-color: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        /* Inputs con el look oscuro del sistema */
+        .form-group input { 
+            flex-grow: 1; 
+            padding: 10px; 
+            border-radius: 6px; 
+            border: 1px solid #334155; 
+            background-color: #0f172a; 
+            color: white; 
+            font-size: 14px; 
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .input-corto { max-width: 150px; }
+        
+        .btn-buscar { 
+            background-color: #334155; 
+            color: white; 
+            border: none; 
+            padding: 10px 15px; 
+            border-radius: 6px; 
+            margin-left: 10px; 
+            cursor: pointer; 
+            font-size: 13px;
+        }
+
+        .btn-buscar:hover { background-color: #475569; }
+        
+        .botones { 
+            display: flex; 
+            justify-content: flex-end; 
+            gap: 15px; 
+            margin-top: 30px; 
+            border-top: 1px solid #334155; 
+            padding-top: 25px; 
+        }
+
+        .btn-secundario { 
+            background-color: transparent; 
+            border: 1px solid #334155; 
+            color: #9ca3af; 
+            padding: 10px 20px; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-weight: bold; 
+        }
+
+        .btn-principal { 
+            background-color: #3b82f6; 
+            color: white; 
+            border: none; 
+            padding: 10px 25px; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            transition: 0.2s;
+        }
+
         .btn-principal:hover { background-color: #2563eb; }
 
-        /* Estilos del Pop-up Oculto */
-        .modal-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 10; }
-        .modal { background-color: #2d2d2d; padding: 30px; border-radius: 8px; width: 450px; border: 1px solid #555; box-shadow: 0 10px 25px rgba(0,0,0,0.8); }
-        .modal h3 { margin-top: 0; color: #fbbf24; font-size: 20px; border-bottom: 1px solid #404040; padding-bottom: 10px; }
-        .modal p { color: #e5e7eb; font-size: 15px; line-height: 1.5; }
-        .modal ul { color: #d1d5db; font-size: 14px; margin-bottom: 25px; }
-        .modal-btn { width: 100%; background-color: #d97706; color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 16px; }
+        /* Estilos del Pop-up con el nuevo tema */
+        .modal-overlay { 
+            position: absolute; 
+            top: 0; left: 0; right: 0; bottom: 0; 
+            background-color: rgba(15, 23, 42, 0.9); 
+            display: none; 
+            justify-content: center; 
+            align-items: center; 
+            z-index: 10; 
+            backdrop-filter: blur(4px);
+        }
+
+        .modal { 
+            background-color: #1e293b; 
+            padding: 35px; 
+            border-radius: 12px; 
+            width: 480px; 
+            border: 1px solid #334155; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); 
+        }
+
+        .modal h3 { 
+            margin-top: 0; 
+            color: #fbbf24; 
+            font-size: 20px; 
+            border-bottom: 1px solid #334155; 
+            padding-bottom: 15px; 
+        }
+
+        .modal p { color: #f3f4f6; font-size: 15px; line-height: 1.6; }
+        .modal ul { color: #9ca3af; font-size: 14px; margin-bottom: 25px; }
+        .modal ul li { margin-bottom: 8px; }
+
+        .modal-btn { 
+            width: 100%; 
+            background-color: #d97706; 
+            color: white; 
+            border: none; 
+            padding: 14px; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            font-size: 15px; 
+            transition: 0.2s;
+        }
+
         .modal-btn:hover { background-color: #b45309; }
     </style>
 </head>
@@ -60,24 +190,24 @@
 
         <div class="form-group">
             <label>Título del Libro:</label>
-            <input type="text" value="El Imperio Final (Nacidos de la Bruma)" readonly style="background-color: #1a1a1a; color: #9ca3af;">
+            <input type="text" value="El Imperio Final (Nacidos de la Bruma)" readonly style="background-color: rgba(15, 23, 42, 0.5); color: #64748b; border-style: dashed;">
         </div>
 
-        <div style="height: 1px; background-color: #404040; margin: 25px 0;"></div>
+        <div style="height: 1px; background-color: #334155; margin: 25px 0;"></div>
 
         <div class="form-group">
             <label>Cantidad de ejemplares recibidos:</label>
-            <input type="number" placeholder="0" class="input-corto"> <span style="margin-left: 10px; color: #9ca3af;">uds.</span>
+            <input type="number" placeholder="0" class="input-corto"> <span style="margin-left: 10px; color: #64748b;">uds.</span>
         </div>
 
         <div class="form-group">
             <label>Precio Unitario (Coste Imprenta):</label>
-            <input type="text" placeholder="0.00" class="input-corto"> <span style="margin-left: 10px; color: #9ca3af;">€ / ud.</span>
+            <input type="text" placeholder="0.00" class="input-corto"> <span style="margin-left: 10px; color: #64748b;">€ / ud.</span>
         </div>
 
         <div class="form-group">
             <label>Precio Total Factura:</label>
-            <input type="text" placeholder="0.00" class="input-corto" style="border-color: #3b82f6;"> <span style="margin-left: 10px; color: #9ca3af;">€</span>
+            <input type="text" placeholder="0.00" class="input-corto" style="border-color: #3b82f6;"> <span style="margin-left: 10px; color: #64748b;">€</span>
         </div>
 
         <div class="botones">

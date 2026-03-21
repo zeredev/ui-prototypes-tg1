@@ -2,34 +2,186 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Prototipo - Tendencias Tableau (Modo Oscuro)</title>
+    <title>Prototipo - Análisis Estratégico (Modo Elegante)</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f0f0; margin: 0; padding: 40px; color: #e0e0e0; }
-        .pantalla { max-width: 1000px; margin: 0 auto; background-color: #1e1e1e; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); overflow: hidden; }
-        .cabecera { background-color: #0f172a; color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #f97316; }
-        .cabecera h1 { margin: 0; font-size: 24px; display: flex; align-items: center; gap: 10px; }
-        .badge-tableau { background-color: #f97316; font-size: 12px; padding: 3px 8px; border-radius: 4px; font-weight: bold; }
-        .contenido { display: flex; }
-        .sidebar { width: 250px; background-color: #252525; padding: 20px; border-right: 1px solid #404040; }
-        .dashboard { flex: 1; padding: 20px; background-color: #1e1e1e; }
-        h3 { font-size: 14px; color: #9ca3af; text-transform: uppercase; border-bottom: 1px solid #404040; padding-bottom: 8px; margin-top: 0;}
-        .filtros label { display: block; margin-bottom: 10px; font-size: 14px; cursor: pointer; }
-        .filtros input { margin-right: 8px; }
-        .grid-tableau { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .panel { background-color: #2d2d2d; border-radius: 6px; border: 1px solid #404040; padding: 15px; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f172a; 
+            margin: 0;
+            padding: 40px;
+            color: #f3f4f6; 
+        }
+
+        .pantalla {
+            max-width: 1150px;
+            margin: 0 auto;
+            background-color: #1e293b; 
+            border-radius: 12px;
+            border: 1px solid #334155;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cabecera {
+            background-color: #1e293b; 
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #f97316; 
+        }
+
+        .cabecera h1 { margin: 0; font-size: 22px; color: #f3f4f6; display: flex; align-items: center; gap: 12px; }
+        
+        .badge-tableau {
+            background-color: rgba(249, 115, 22, 0.1); 
+            color: #f97316;
+            font-size: 11px; 
+            padding: 4px 10px; 
+            border-radius: 20px; 
+            border: 1px solid #f97316;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: bold;
+        }
+
+        .usuario { font-size: 13px; color: #9ca3af; }
+
+        .contenedor-principal {
+            display: flex;
+            min-height: 600px;
+        }
+
+        
+        .sidebar {
+            width: 240px;
+            background-color: #111827; 
+            padding: 25px;
+            border-right: 1px solid #334155;
+        }
+
+        .sidebar h3 {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 10px;
+        }
+
+        .filtros label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .filtros label:hover { color: #f3f4f6; }
+        .filtros input { margin-right: 10px; accent-color: #f97316; }
+
+        .status-api {
+            margin-top: 40px;
+            padding: 15px;
+            background-color: #0f172a;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        
+        .dashboard {
+            flex: 1;
+            padding: 30px;
+            background-color: #0f172a; 
+        }
+
+        .grid-tableau {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .panel {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+
         .panel.ancho { grid-column: 1 / -1; }
-        .panel h4 { margin: 0 0 15px 0; font-size: 16px; color: #f3f4f6; }
-        .placeholder-grafica { height: 180px; background-color: #333; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #6b7280; flex-direction: column; }
-        .stock-alerta { color: #fca5a5; font-weight: bold; background-color: #450a0a; padding: 10px; border-radius: 4px; text-align: center; border: 1px solid #7f1d1d;}
+
+        .panel h4 {
+            margin: 0 0 20px 0;
+            font-size: 15px;
+            color: #f3f4f6;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        
+        .placeholder-grafica {
+            height: 200px;
+            background-color: #111827;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #4b5563;
+            border: 1px dashed #334155;
+        }
+
+        .panel.ancho .placeholder-grafica { height: 280px; }
+
+        
+        .alertas-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .stock-alerta {
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .alerta-warning {
+            background-color: rgba(127, 29, 29, 0.2);
+            border: 1px solid #ef4444;
+            color: #fca5a5;
+        }
+
+        .alerta-success {
+            background-color: rgba(6, 78, 59, 0.2);
+            border: 1px solid #10b981;
+            color: #6ee7b7;
+        }
     </style>
 </head>
 <body>
+
 <div class="pantalla">
     <div class="cabecera">
         <h1>Análisis Estratégico <span class="badge-tableau">Powered by Tableau Cloud</span></h1>
         <div class="usuario">Usuario: <strong>Responsable Tienda</strong></div>
     </div>
-    <div class="contenido">
+
+    <div class="contenedor-principal">
         <div class="sidebar">
             <h3>Filtros de Género</h3>
             <div class="filtros">
@@ -40,37 +192,58 @@
                 <label><input type="checkbox"> Romántica</label>
                 <label><input type="checkbox"> No Ficción</label>
                 <label><input type="checkbox"> Infantil/Juvenil</label>
-                <label><input type="checkbox"> Cómics/Manga</label>
             </div>
-            <br>
-            <h3>Sincronización</h3>
-            <p style="font-size: 12px; color: #9ca3af;">Última act: Hoy, 08:30h<br>API Status: Conectado 🟢</p>
+
+            <div class="status-api">
+                <strong>Sincronización API</strong><br>
+                Última act: Hoy, 08:30h<br>
+                Estado: <span style="color: #10b981;">● Conectado</span>
+            </div>
         </div>
+
         <div class="dashboard">
             <div class="grid-tableau">
+                
                 <div class="panel ancho">
-                    <h4>Evolución Histórica por Género y Autor</h4>
-                    <div class="placeholder-grafica" style="height: 220px;">
-                        <span style="font-size: 30px;">📈</span> Gráfica interactiva de Tableau (Múltiples series)
-                    </div>
-                </div>
-                <div class="panel">
-                    <h4>Top 5 Más Vendidos</h4>
+                    <h4>Evolución Histórica por Género y Autor <span>📊 Interactivo</span></h4>
                     <div class="placeholder-grafica">
-                        <span style="font-size: 30px;">📊</span> Gráfico de barras horizontales
+                        <span style="font-size: 40px; margin-bottom: 10px;">📈</span>
+                        <p>Visualización de series temporales de Tableau</p>
                     </div>
                 </div>
+
                 <div class="panel">
-                    <h4>Predicción de Stock Necesario</h4>
-                    <div class="placeholder-grafica" style="background-color: transparent; border: none;">
-                        <div class="stock-alerta">⚠️ Pedir a imprenta:<br>"Dune" (Est. agotamiento en 12 días)</div>
-                        <br>
-                        <div class="stock-alerta" style="background-color: #064e3b; color: #6ee7b7; border-color: #065f46;">✅ Stock Óptimo:<br>Fantasía y Novela</div>
+                    <h4>Top 5 Más Vendidos <span>🏆</span></h4>
+                    <div class="placeholder-grafica">
+                        <span style="font-size: 40px; margin-bottom: 10px;">📊</span>
+                        <p>Ranking acumulado mensual</p>
                     </div>
                 </div>
+
+                <div class="panel">
+                    <h4>Predicción de Stock Necesario <span>🔮</span></h4>
+                    <div class="alertas-container">
+                        <div class="stock-alerta alerta-warning">
+                            <span style="font-size: 20px;">⚠️</span>
+                            <div>
+                                <strong>Pedir a imprenta: "Dune"</strong><br>
+                                Agotamiento estimado en 12 días.
+                            </div>
+                        </div>
+                        <div class="stock-alerta alerta-success">
+                            <span style="font-size: 20px;">✅</span>
+                            <div>
+                                <strong>Nivel Óptimo</strong><br>
+                                Fantasía y Novela cubren Q4.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
+
 </body>
 </html>

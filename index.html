@@ -5,17 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Prototipos - Ingeniería del Software (TG1)</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f172a; color: #f3f4f6; margin: 0; padding: 40px; display: flex; flex-direction: column; align-items: center; }
-        .header { text-align: center; margin-bottom: 50px; }
+        
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #0f172a; 
+            color: #f3f4f6; 
+            margin: 0; 
+            padding: 20px;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;     
+            min-height: 100vh;       
+        }
+
+        .header { text-align: center; margin-bottom: 40px; }
         .header h1 { font-size: 32px; color: #3b82f6; margin-bottom: 10px; }
         .header p { color: #9ca3af; font-size: 18px; }
         
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; max-width: 1000px; width: 100%; }
         
-        .card { background-color: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 25px; transition: transform 0.2s, border-color 0.2s; text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between; }
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 25px; 
+            max-width: 800px;
+        } 
+        .card { 
+            background-color: #1e293b; 
+            border: 1px solid #334155; 
+            border-radius: 12px; 
+            padding: 25px; 
+            transition: transform 0.2s, border-color 0.2s; 
+            text-decoration: none; 
+            color: inherit; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between;
+            min-height: 160px; 
+        }
+
         .card:hover { transform: translateY(-5px); border-color: #3b82f6; background-color: #1e293b; }
-        
-        .card h2 { margin-top: 0; font-size: 20px; color: #f9fafb; display: flex; align-items: center; gap: 10px; }
+        .card h2 { margin-top: 10px; font-size: 20px; color: #f9fafb; display: flex; align-items: center; gap: 10px; }
         .card p { font-size: 14px; color: #9ca3af; line-height: 1.5; margin-bottom: 20px; }
         
         .badge { font-size: 11px; padding: 3px 8px; border-radius: 4px; font-weight: bold; text-transform: uppercase; align-self: flex-start; }
@@ -23,7 +53,13 @@
         .badge-admin { background-color: #3b82f6; color: white; }
         .badge-log { background-color: #10b981; color: white; }
 
-        .footer { margin-top: 60px; color: #4b5563; font-size: 13px; text-align: center; }
+        .footer { margin-top: 50px; color: #4b5563; font-size: 13px; text-align: center; }
+
+        
+        @media (max-width: 650px) {
+            .grid-container { grid-template-columns: 1fr; }
+            body { justify-content: flex-start; padding-top: 40px; }
+        }
     </style>
 </head>
 <body>
@@ -38,36 +74,36 @@
             <div>
                 <span class="badge badge-bi">Business Intelligence</span>
                 <h2>📈 Análisis Estratégico</h2>
-                <p>Simulación de integración con Tableau Cloud para visualizar ventas por género y predicción de stock.</p>
+                <p>Análisis de ventas y predicción de stock (Tableau Cloud).</p>
             </div>
-            <span style="color: #3b82f6; font-weight: bold;">Abrir módulo →</span>
+            <span style="color: #3b82f6; font-weight: bold; font-size: 13px;">Acceder al módulo →</span>
         </a>
 
         <a href="procesar_imprenta.html" class="card">
             <div>
                 <span class="badge badge-log">Logística</span>
                 <h2>🏭 Recepción Imprenta</h2>
-                <p>Registro de entrada de mercancía con detección automática de pedidos pendientes y facturación inmediata.</p>
+                <p>Gestión de entrada de mercancía y pedidos pendientes.</p>
             </div>
-            <span style="color: #3b82f6; font-weight: bold;">Abrir módulo →</span>
+            <span style="color: #3b82f6; font-weight: bold; font-size: 13px;">Acceder al módulo →</span>
         </a>
 
         <a href="informe_estado_cuentas.html" class="card">
             <div>
                 <span class="badge badge-admin">Finanzas</span>
                 <h2>💰 Estado de Cuentas</h2>
-                <p>Visualización de balances financieros utilizando arquitecturas de datos híbridas (MySQL + Cassandra).</p>
+                <p>Balances económicos (MySQL + Cassandra).</p>
             </div>
-            <span style="color: #3b82f6; font-weight: bold;">Abrir módulo →</span>
+            <span style="color: #3b82f6; font-weight: bold; font-size: 13px;">Acceder al módulo →</span>
         </a>
 
         <a href="historico_libro.html" class="card">
             <div>
                 <span class="badge badge-admin">Gestión</span>
                 <h2>🔍 Histórico de Libros</h2>
-                <p>Buscador avanzado para consultar la trazabilidad y evolución temporal de ejemplares específicos.</p>
+                <p>Trazabilidad y evolución temporal de ejemplares.</p>
             </div>
-            <span style="color: #3b82f6; font-weight: bold;">Abrir módulo →</span>
+            <span style="color: #3b82f6; font-weight: bold; font-size: 13px;">Acceder al módulo →</span>
         </a>
     </div>
 

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Prototipo - Informe de Cuentas (Modo Oscuro)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff; 
+            margin: 0;
+            padding: 40px;
+            color: #e0e0e0; 
+        }
+        .pantalla {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #1e1e1e; 
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+        .cabecera {
+            background-color: #0f172a; 
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cabecera h1 { margin: 0; font-size: 24px; }
+        .usuario { font-size: 14px; color: #9ca3af; }
+        .contenido { padding: 30px; }
+        .controles {
+            background-color: #2d2d2d; 
+            border: 1px solid #404040;
+            padding: 15px 20px;
+            border-radius: 6px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 30px;
+            color: #f3f4f6;
+        }
+        select, button, input { 
+            padding: 8px; border-radius: 4px; border: 1px solid #555; 
+            background-color: #404040; color: #e0e0e0;
+        }
+        .btn-generar {
+            background-color: #3b82f6; color: white; border: none; font-weight: bold;
+            cursor: pointer; padding: 10px 20px;
+        }
+        .btn-generar:hover { background-color: #2563eb; }
+        h2 { font-size: 18px; color: #f9fafb; border-bottom: 2px solid #404040; padding-bottom: 5px; margin-top: 30px;}
+        table {
+            width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px;
+        }
+        th, td { border: 1px solid #404040; padding: 12px; text-align: left; }
+        th { background-color: #333333; font-weight: bold; color: #f3f4f6; }
+        .fila-total { background-color: #2d2d2d; font-weight: bold; color: #f3f4f6; }
+        .texto-derecha { text-align: right; }
+        .resumen-total {
+            margin-top: 30px; padding: 20px; background-color: #450a0a; 
+            border: 1px solid #7f1d1d; border-radius: 6px;
+            text-align: right; font-size: 20px; font-weight: bold; color: #fecaca;
+        }
+        .graficas {
+            display: flex; gap: 20px; margin-top: 20px;
+        }
+        .caja-grafica {
+            flex: 1; height: 200px; background-color: #2d2d2d; border: 1px dashed #555;
+            display: flex; align-items: center; justify-content: center;
+            color: #9ca3af; font-style: italic; border-radius: 6px; flex-direction: column;
+        }
+        .etiqueta-bd {
+            display: inline-block; background-color: #374151; color: #e5e7eb;
+            font-size: 11px; padding: 3px 8px; border-radius: 12px; margin-left: 10px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+<div class="pantalla">
+    <div class="cabecera">
+        <h1>Estado de Cuentas <span class="etiqueta-bd">Datos de MySQL + Cassandra</span></h1>
+        <div class="usuario">Usuario: <strong>Responsable Tienda</strong></div>
+    </div>
+
+    <div class="contenido">
+        <div class="controles">
+            <label><strong>Mes:</strong> 
+                <select><option>Octubre</option><option>Noviembre</option></select>
+            </label>
+            <label><strong>Año:</strong> 
+                <select><option>2026</option></select>
+            </label>
+            <div style="border-left: 1px solid #555; height: 24px;"></div>
+            <label><input type="radio" name="moneda" checked> Euros (€)</label>
+            <label><input type="radio" name="moneda"> Dólares ($) <em>(Tipo de cambio: 1.08)</em></label>
+            <div style="flex-grow: 1;"></div>
+            <button class="btn-generar">Generar Informe</button>
+        </div>
+
+        <h2>Detalle de Ventas a Clientes (Ingresos)</h2>
+        <table>
+            <tr><th>Cód. Libro</th><th>Título</th><th>Cant.</th><th>PVP Unitario</th><th>Total Venta</th></tr>
+            <tr><td>L-982</td><td>El Imperio Final (Nacidos de la Bruma)</td><td>12</td><td class="texto-derecha">22.50 €</td><td class="texto-derecha">270.00 €</td></tr>
+            <tr><td>L-105</td><td>Dune</td><td>8</td><td class="texto-derecha">19.90 €</td><td class="texto-derecha">159.20 €</td></tr>
+            <tr class="fila-total"><td colspan="4" class="texto-derecha">IMPORTE TOTAL VENTAS:</td><td class="texto-derecha">429.20 €</td></tr>
+        </table>
+
+        <h2>Detalle de Compras a Imprenta (Gastos)</h2>
+        <table>
+            <tr><th>Cód. Orden</th><th>Título</th><th>Cant.</th><th>Coste Imprenta Unit.</th><th>Total Compra</th></tr>
+            <tr><td>ORD-441</td><td>El Imperio Final (Nacidos de la Bruma)</td><td>50</td><td class="texto-derecha">9.00 €</td><td class="texto-derecha">450.00 €</td></tr>
+            <tr class="fila-total"><td colspan="4" class="texto-derecha">IMPORTE TOTAL COMPRAS:</td><td class="texto-derecha">450.00 €</td></tr>
+        </table>
+
+        <div class="resumen-total">
+            DIFERENCIA (BENEFICIO NETO): -20.80 €
+            <div style="font-size: 14px; font-weight: normal; color: #9ca3af; margin-top: 5px;">* Las compras han superado a las ventas en este periodo.</div>
+        </div>
+
+        <h2>Evolución Histórica (Últimos 60 meses)</h2>
+        <div class="graficas">
+            <div class="caja-grafica">
+                <span style="font-size: 30px;">📊</span>
+                <p>Gráfica: Libros Vendidos vs. Comprados</p>
+            </div>
+            <div class="caja-grafica">
+                <span style="font-size: 30px;">📈</span>
+                <p>Gráfica: Gastos vs. Beneficios</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

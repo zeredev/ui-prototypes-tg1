@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Prototipo - Histórico de Libro (Modo Oscuro)</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #ffffff; margin: 0; padding: 40px; color: #e0e0e0; }
+        .pantalla { max-width: 900px; margin: 0 auto; background-color: #1e1e1e; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); overflow: hidden; }
+        .cabecera { background-color: #0f172a; color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; }
+        .cabecera h1 { margin: 0; font-size: 24px; }
+        .usuario { font-size: 14px; color: #9ca3af; }
+        .contenido { padding: 30px; }
+        .buscador { display: flex; gap: 10px; margin-bottom: 30px; }
+        input[type="text"] { flex-grow: 1; padding: 12px; border-radius: 4px; border: 1px solid #555; background-color: #2d2d2d; color: white; font-size: 16px; }
+        button { background-color: #3b82f6; color: white; border: none; font-weight: bold; cursor: pointer; padding: 12px 24px; border-radius: 4px; font-size: 16px; }
+        button:hover { background-color: #2563eb; }
+        .resumen { display: flex; gap: 20px; margin-bottom: 30px; }
+        .caja-resumen { background-color: #2d2d2d; padding: 20px; border-radius: 6px; flex: 1; border-left: 4px solid #3b82f6; }
+        .caja-resumen h3 { margin: 0 0 10px 0; font-size: 14px; color: #9ca3af; text-transform: uppercase; }
+        .caja-resumen p { margin: 0; font-size: 24px; font-weight: bold; color: #f3f4f6; }
+        .columnas { display: flex; gap: 30px; }
+        .columna-izq { flex: 1; }
+        .columna-der { flex: 1.5; }
+        h2 { font-size: 18px; color: #f9fafb; border-bottom: 2px solid #404040; padding-bottom: 5px; margin-top: 0;}
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
+        th, td { border: 1px solid #404040; padding: 10px; text-align: left; }
+        th { background-color: #333333; color: #f3f4f6; }
+        .caja-grafica { height: 250px; background-color: #2d2d2d; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #9ca3af; border-radius: 6px; flex-direction: column; margin-top: 15px; }
+    </style>
+</head>
+<body>
+<div class="pantalla">
+    <div class="cabecera">
+        <h1>Consultar Histórico de Libro</h1>
+        <div class="usuario">Usuario: <strong>Empleado Tienda</strong></div>
+    </div>
+    <div class="contenido">
+        <div class="buscador">
+            <input type="text" value="El Imperio Final" placeholder="Introduce el título del libro...">
+            <button>Buscar en Histórico</button>
+        </div>
+        <div class="resumen">
+            <div class="caja-resumen">
+                <h3>Fecha del Primer Ejemplar</h3>
+                <p>12/05/2021</p>
+            </div>
+            <div class="caja-resumen">
+                <h3>Total de Unidades Vendidas</h3>
+                <p>342 uds.</p>
+            </div>
+        </div>
+        <div class="columnas">
+            <div class="columna-izq">
+                <h2>Desglose Temporal</h2>
+                <table>
+                    <tr><th>Año</th><th>Unidades</th></tr>
+                    <tr><td>2021</td><td>45</td></tr>
+                    <tr><td>2022</td><td>82</td></tr>
+                    <tr><td>2023</td><td>115</td></tr>
+                    <tr><td>2024</td><td>100</td></tr>
+                </table>
+            </div>
+            <div class="columna-der">
+                <h2>Evolución de Ventas</h2>
+                <div class="caja-grafica">
+                    <span style="font-size: 40px; margin-bottom: 10px;">📉</span>
+                    <p>Gráfica de evolución temporal (Líneas)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

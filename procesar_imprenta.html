@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Prototipo - Recepción Imprenta (Modo Oscuro)</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #ffffff; margin: 0; padding: 40px; color: #e0e0e0; }
+        .pantalla { max-width: 800px; margin: 0 auto; background-color: #1e1e1e; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); overflow: hidden; position: relative; }
+        .cabecera { background-color: #0f172a; color: white; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; }
+        .cabecera h1 { margin: 0; font-size: 24px; }
+        .usuario { font-size: 14px; color: #9ca3af; }
+        .contenido { padding: 30px; }
+        
+        .info-box { background-color: #1e3a8a; border-left: 4px solid #3b82f6; padding: 15px; border-radius: 4px; margin-bottom: 30px; color: #bfdbfe; font-size: 14px; }
+        
+        .form-group { margin-bottom: 20px; display: flex; align-items: center; }
+        .form-group label { width: 220px; font-weight: bold; color: #d1d5db; }
+        .form-group input { flex-grow: 1; padding: 10px; border-radius: 4px; border: 1px solid #555; background-color: #2d2d2d; color: white; font-size: 14px; }
+        .input-corto { max-width: 150px; }
+        .btn-buscar { background-color: #4b5563; color: white; border: none; padding: 10px 15px; border-radius: 4px; margin-left: 10px; cursor: pointer; }
+        
+        .botones { display: flex; justify-content: flex-end; gap: 15px; margin-top: 30px; border-top: 1px solid #404040; padding-top: 20px; }
+        .btn-secundario { background-color: transparent; border: 1px solid #555; color: #d1d5db; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-principal { background-color: #3b82f6; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-principal:hover { background-color: #2563eb; }
+
+        /* Estilos del Pop-up Oculto */
+        .modal-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 10; }
+        .modal { background-color: #2d2d2d; padding: 30px; border-radius: 8px; width: 450px; border: 1px solid #555; box-shadow: 0 10px 25px rgba(0,0,0,0.8); }
+        .modal h3 { margin-top: 0; color: #fbbf24; font-size: 20px; border-bottom: 1px solid #404040; padding-bottom: 10px; }
+        .modal p { color: #e5e7eb; font-size: 15px; line-height: 1.5; }
+        .modal ul { color: #d1d5db; font-size: 14px; margin-bottom: 25px; }
+        .modal-btn { width: 100%; background-color: #d97706; color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 16px; }
+        .modal-btn:hover { background-color: #b45309; }
+    </style>
+</head>
+<body>
+
+<div class="pantalla">
+    <div class="cabecera">
+        <h1>Recepción de Imprenta</h1>
+        <div class="usuario">Usuario: <strong>Empleado Tienda</strong></div>
+    </div>
+
+    <div class="contenido">
+        <div class="info-box">
+            ℹ️ <strong>Importante:</strong> Según la normativa, la factura de imprenta que se registre a continuación solo puede referirse a un único título de libro.
+        </div>
+
+        <div class="form-group">
+            <label>Cód. Orden de Impresión original:</label>
+            <input type="text" placeholder="Ej: ORD-2026-88" class="input-corto">
+        </div>
+        
+        <div class="form-group">
+            <label>Código del Libro recibido:</label>
+            <input type="text" placeholder="Ej: L-982" class="input-corto">
+            <button class="btn-buscar">Verificar Título</button>
+        </div>
+
+        <div class="form-group">
+            <label>Título del Libro:</label>
+            <input type="text" value="El Imperio Final (Nacidos de la Bruma)" readonly style="background-color: #1a1a1a; color: #9ca3af;">
+        </div>
+
+        <div style="height: 1px; background-color: #404040; margin: 25px 0;"></div>
+
+        <div class="form-group">
+            <label>Cantidad de ejemplares recibidos:</label>
+            <input type="number" placeholder="0" class="input-corto"> <span style="margin-left: 10px; color: #9ca3af;">uds.</span>
+        </div>
+
+        <div class="form-group">
+            <label>Precio Unitario (Coste Imprenta):</label>
+            <input type="text" placeholder="0.00" class="input-corto"> <span style="margin-left: 10px; color: #9ca3af;">€ / ud.</span>
+        </div>
+
+        <div class="form-group">
+            <label>Precio Total Factura:</label>
+            <input type="text" placeholder="0.00" class="input-corto" style="border-color: #3b82f6;"> <span style="margin-left: 10px; color: #9ca3af;">€</span>
+        </div>
+
+        <div class="botones">
+            <button class="btn-secundario">Cancelar</button>
+            <button class="btn-principal" onclick="mostrarPopup()">Procesar Paquete</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="ventanaAviso">
+        <div class="modal">
+            <h3>⚠️ Pedidos Pendientes Detectados</h3>
+            <p>Se han encontrado <strong>3 clientes</strong> que estaban esperando este libro ("El Imperio Final").</p>
+            <p>El sistema procederá de forma automática a:</p>
+            <ul>
+                <li>Reservar 3 unidades del stock recién llegado.</li>
+                <li>Finalizar los pedidos pendientes de estos clientes.</li>
+                <li>Generar y emitir las facturas de venta al PVP correspondiente.</li>
+            </ul>
+            <button class="modal-btn" onclick="cerrarPopup()">Aceptar y Facturar a Clientes</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function mostrarPopup() {
+        document.getElementById('ventanaAviso').style.display = 'flex';
+    }
+    function cerrarPopup() {
+        document.getElementById('ventanaAviso').style.display = 'none';
+        alert("Stock actualizado y facturas de cliente generadas correctamente.");
+    }
+</script>
+
+</body>
+</html>

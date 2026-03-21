@@ -10,10 +10,10 @@ Hemos creado varias interfaces con un diseño más elegante y complejo como alte
 
 ## 📂 Estructura del repositorio 
 
-- Interfaz 1:
-- Interfaz 2:
-- Interfaz 3:
-- Interfaz 4:
+- Interfaz 1: Prototipo que permite analizar tendencias de venta. 
+- Interfaz 2: Muestra la información almacenada en el sistema relativa al libro buscado.
+- Interfaz 3: Vista exclusiva que posee el Responsable de la tienda para analizar y comprobar el estado económico del negocio.
+- Interfaz 4: Permite la recepción de la mercancía y su registro en el almacén. También agiliza procesos de venta.
 
 ## 🛠️ Cómo visualizar los prototipos
 

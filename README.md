@@ -57,4 +57,4 @@ El portal de acceso al ecosistema. Permite al usuario navegar entre las diferent
 * **Jorge Alcázar** - [@Jalcazara](https://github.com/Jalcazara)
 
 ---
-*Este proyecto ha sido desarrollado siguiendo los principios de Ingeniería del Software para el Grado en Ingeniería de Computadores - 2026.*
+*Este proyecto ha sido desarrollado para la asignatura Ingeniería del Software en el Grado en Ingeniería de Computadores de la UAH - 2026.*

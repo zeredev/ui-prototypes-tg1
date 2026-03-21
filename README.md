@@ -4,7 +4,7 @@
 [![Status](https://img.shields.io/badge/Status-Completado-success)](#)
 [![Design](https://img.shields.io/badge/UI_Style-Blue_Night_&_Slate-3b82f6)](#)
 
-Este repositorio contiene la propuesta de interfaces de usuario de alta fidelidad para la asignatura de **Ingeniería del Software (TG1)**. El proyecto presenta una suite integral de herramientas para la gestión operativa y estratégica de una librería técnica.
+Este repositorio contiene la propuesta de interfaces de usuario de alta fidelidad para la TG1 de **Ingeniería del Software**. El proyecto presenta una suite integral de herramientas para la gestión operativa y estratégica de una librería técnica.
 
 ## 🚀 Demo en Vivo
 Si deseas explorar los prototipos sin descargar el código, puedes acceder a la versión desplegada aquí:
